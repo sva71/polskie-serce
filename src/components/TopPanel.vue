@@ -1,6 +1,6 @@
 <template>
     <div class="top-panel">
-        Top Panel
+        <img src="../assets/img/logo.png" alt="">
     </div>
 </template>
 
@@ -26,9 +26,8 @@ export default {
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
-    padding: 0 10px;
 }
 
 </style>

@@ -12,6 +12,7 @@
             <MainPage />
         </div>
         <PolishHeart />
+        <Projecting />
     </div>
 </template>
 
@@ -20,13 +21,15 @@
 import TopPanel from "./components/TopPanel.vue";
 import MainPage from "./components/MainPage.vue";
 import PolishHeart from "./components/PolishHeart.vue";
+import Projecting from "./components/Projecting.vue";
 
 export default {
 
     components: {
         PolishHeart,
         TopPanel,
-        MainPage
+        MainPage,
+        Projecting
     }
 
 }

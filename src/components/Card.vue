@@ -35,9 +35,13 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     width: 362px;
+    height: 528px;
+    position: relative;
     padding: 60px 40px;
     border: 1px solid var(--cl-light);
     border-radius: 10px;
+    background: #FFFFFF;
+    z-index: 5;
     &:hover {
         box-shadow: 0 20px 30px rgba(128, 152, 213, 0.2)
     }

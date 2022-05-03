@@ -1,6 +1,6 @@
 <template>
 
-    <div class="proj">
+    <div class="proj" id="projecting">
 
         <div class="proj-title">
             <p>{{ title }}</p>
@@ -8,9 +8,7 @@
         </div>
 
         <div class="proj-cards">
-            <div v-for="card in cards">
-                <Card :card="card" />
-            </div>
+            <Slider :cardData="cards" />
         </div>
 
     </div>
@@ -21,13 +19,15 @@
 <script>
 
 import Card from "./Card.vue";
+import Slider from "./Slider.vue";
 
 export default {
 
     name: "Projecting",
 
     components: {
-        Card
+        Card,
+        Slider
     },
 
     data() {
@@ -52,6 +52,18 @@ export default {
                     text: 'et Malorum”, czyli „O granicy dobra i zła”, napisanej właśnie w 45 p.n.e. przez ' +
                         'Cycerona. Jest to bardzo popularna w czasach renesansu rozprawa na temat etyki. Pierwszy ' +
                         'wiersz Lorem Ipsum, „Lorem ipsum dolor sit amet...” pochodzi...'
+                },
+                {
+                    title: 'McClintock, wykłado',
+                    text: 'łaciny na uniwersytecie Hampden-Sydney w Virginii, przyjrzał się uważniej jednemu z ' +
+                        'najbardziej niejasnych słów w Lorem Ipsum – consectetur – i po wielu poszukiwaniach odnalazł ' +
+                        'niezaprzeczalne źródło: Lorem Ipsum pochodz...'
+                },
+                {
+                    title: 'Skąd się to wzięło',
+                    text: 'W przeciwieństwie do rozpowszechnionych opinii, Lorem Ipsum nie jest tylko przypadkowym ' +
+                        'tekstem. Ma ono korzenie w klasycznej łacińskiej literaturze z 45 roku przed Chrystusem, ' +
+                        'czyli ponad 2000 lat temu! Richard ...'
                 }
             ]
         }
@@ -69,7 +81,7 @@ export default {
     margin-top: 187px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-around;
     align-items: center;
     &-title {
         position: relative;
@@ -95,8 +107,24 @@ export default {
         width: 100%;
         display: flex;
         flex-direction: row;
-        justify-content: space-around;
+        justify-content: center;
         margin-top: 68px;
+    }
+}
+
+.carousel {
+    z-index: 5;
+    &:after {
+        content: "";
+        width: 160px;
+        height: 160px;
+        box-sizing: border-box;
+        position: absolute;
+        top: -80px;
+        right: calc(-80px + (33.3333% - 362px) / 2);
+        border: 30px solid var(--cl-rose);
+        border-radius: 50%;
+        z-index: -10;
     }
 }
 

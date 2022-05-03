@@ -1,18 +1,25 @@
 <template>
-    <div style="overflow-x: hidden; position: relative;">
+    <div style="overflow-x: hidden; position: relative;" id="#landing">
         <div class="circle1"></div>
         <div class="circle2">
             <div class="circle3"></div>
             <div class="circle4"></div>
             <div class="circle5"></div>
+            <div class="circle6"></div>
         </div>
-        <div class="circle6"></div>
-        <div class="wrapper" id="top">
-            <TopPanel />
-            <MainPage />
+        <div class="wrapper">
+            <div class="lang-panel">
+                <select name="lang" id="lang-select" @change="langChange($event)">
+                    <option v-for="lang of langs">{{ lang }}</option>
+                </select>
+            </div>
+            <TopPanel :lang="langs[activeLang]" />
+            <MainPage :lang="langs[activeLang]" />
         </div>
         <PolishHeart />
-        <Projecting />
+<!--        <Projecting />-->
+        <Accounts :lang="langs[activeLang]" />
+
     </div>
 </template>
 
@@ -22,6 +29,7 @@ import TopPanel from "./components/TopPanel.vue";
 import MainPage from "./components/MainPage.vue";
 import PolishHeart from "./components/PolishHeart.vue";
 import Projecting from "./components/Projecting.vue";
+import Accounts from "./components/Accounts.vue";
 
 export default {
 
@@ -29,7 +37,24 @@ export default {
         PolishHeart,
         TopPanel,
         MainPage,
-        Projecting
+        Projecting,
+        Accounts
+    },
+
+    data() {
+        return {
+            langs: ['PL', 'UK'],
+            activeLang: 0
+        }
+    },
+
+    methods: {
+
+        langChange($event) {
+            this.activeLang = $event.target.selectedIndex;
+            console.log(this.activeLang);
+        }
+
     }
 
 }
@@ -43,10 +68,25 @@ export default {
     position: relative;
     width: 100%;
     min-height: 100vh;
-    margin: 50px 170px;
+    margin: 0 170px;
     overflow-y: scroll;
     @media (max-width: 800px) {
         margin: 50px 20px;
+    }
+}
+
+.lang-panel {
+    position: fixed;
+    top: 15px;
+    right: 5%;
+    z-index: 11;
+    border: 1px solid var(--cl-light);
+    border-radius: 4px;
+    #lang-select {
+        height: 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 4px;
     }
 }
 

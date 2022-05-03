@@ -1,6 +1,6 @@
 <template>
 
-    <div class="polish-heart">
+    <div class="polish-heart" id="about">
         <div class="top-block">
             <div class="kalyna-img">
                 <div class="circle1"></div>

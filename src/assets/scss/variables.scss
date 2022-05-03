@@ -3,8 +3,21 @@
   --cl-black: #19191B;
   --cl-gray: #696871;
   --cl-red: #DC143C;
+  --cl-rose: rgba(220, 20, 60, 0.3);
   --cl-blue: #0057B7;
   --cl-yellow: #FFDD00;
   --cl-light: #EAEDFF;
+
+  --vc-pgn-margin: 0 5px;
+  --vc-pgn-width: 30px;
+  --vc-pgn-height: 8px;
+  --vc-pgn-background-color: var(--cl-rose);
+  --vc-pgn-active-color: var(--cl-red);
+
+  --anchor-font-size: 16px;
+  --anchor-line-height: 16px;
+  --anchor-menu-font-size: 16px;
+  --anchor-menu-line-height: 26px;
+  --burger-font-size: 28px;
 
 }

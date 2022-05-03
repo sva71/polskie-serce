@@ -1,5 +1,5 @@
 <template>
-    <div class="main-page">
+    <div class="main-page" id="main">
         <div class="title">
             <p class="title-text">{{ titleText }}</p>
             <div class="red-line"></div>
@@ -9,7 +9,7 @@
             <span class="subtitle-text">{{ subtitleText2 }}</span>
         </div>
         <p class="content">{{ content }}</p>
-        <div class="button">{{ buttonText }}</div>
+        <div class="button" @click="donateClick">{{ buttonText }}</div>
     </div>
 </template>
 
@@ -27,7 +27,14 @@ export default {
             subtitleText2: 'consectetur adipiscing elit',
             content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. At habitant iaculis sed mauris metus ' +
                 'elit orci. Arcu hendrerit magna duis sed consectetur elementum sit senectus praesent.',
-            buttonText: 'Podarować'
+            buttonText: 'Donata'
+        }
+    },
+
+    methods: {
+        donateClick() {
+            window.location.hash = 'main';
+            window.location.hash = 'aid'
         }
     }
 
@@ -93,6 +100,7 @@ export default {
     font-size: 30px;
     border-radius: 10px;
     cursor: pointer;
+    text-align: center;
     &:hover {
         color: #EEEEEE;
     }

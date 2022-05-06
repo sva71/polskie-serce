@@ -5,8 +5,8 @@
             <div class="circle3"></div>
             <div class="circle4"></div>
             <div class="circle5"></div>
-            <div class="circle6"></div>
         </div>
+        <div class="circle6"></div>
         <div class="wrapper">
             <div class="lang-panel">
                 <select name="lang" id="lang-select" @change="langChange($event)">
@@ -75,21 +75,6 @@ export default {
     }
 }
 
-.lang-panel {
-    position: fixed;
-    top: 15px;
-    right: 5%;
-    z-index: 11;
-    border: 1px solid var(--cl-light);
-    border-radius: 4px;
-    #lang-select {
-        height: 20px;
-        font-size: 16px;
-        border: none;
-        border-radius: 4px;
-    }
-}
-
 .circle1 {
     position: absolute;
     top: calc(-20vmin / 2);
@@ -144,13 +129,31 @@ export default {
 
 .circle6 {
     position: absolute;
-    top: 48%;
+    top: 50vh;
     left: 9%;
     width: 4vmin;
     height: 4vmin;
     border-radius: 50%;
     background-color: var(--cl-red);
     opacity: 0.3;
+}
+
+.lang-panel {
+    position: fixed;
+    top: 15px;
+    right: 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 11;
+    #lang-select {
+        height: 30px;
+        font-size: 16px;
+        border: 1px solid var(--cl-light);
+        border-radius: 4px;
+        margin-left: 20px;
+    }
 }
 
 </style>

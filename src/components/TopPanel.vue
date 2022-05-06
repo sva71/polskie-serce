@@ -25,6 +25,7 @@
                 </div>
             </div>
         </div>
+        <div v-if="activeAnchor > 0" class="button small" @click="donateClick">Donata</div>
     </div>
 </template>
 
@@ -41,12 +42,12 @@ export default {
             anchors: [
                 { title: { 'PL': 'Główny', 'UK': 'Головна'}, id: 'main', enabled: true },
                 { title: { 'PL': 'O nas', 'UK': 'Про нас' }, id: 'about', enabled: true },
-                // { title: { 'PL': 'Projektowanie', 'UK': 'Проекти' }, id: 'projecting', enabled: true },
-                // { title: { 'PL': 'Ambasadorzy', 'UK': 'Амбасадори' }, id: 'ambassadors', enabled: false },
-                // { title: { 'PL': 'Wzmacniacz', 'UK': 'Підсилювач' }, id: 'amplifier', enabled: false },
+                { title: { 'PL': 'Projektowanie', 'UK': 'Проекти' }, id: 'projecting', enabled: true },
+                { title: { 'PL': 'Ambasadorzy', 'UK': 'Амбасадори' }, id: 'ambassadors', enabled: false },
+                { title: { 'PL': 'Wzmacniacz', 'UK': 'Підсилювач' }, id: 'amplifier', enabled: false },
                 { title: { 'PL': 'Pomoc', 'UK': 'Допомога' }, id: 'aid', enabled: true },
-                // { title: { 'PL': 'Szczegóły', 'UK': 'Подробиці'}, id: 'details', enabled: false },
-                // { title: { 'PL': 'Łączność', 'UK': 'Комунікація'}, id: 'communication', enabled: false }
+                { title: { 'PL': 'Szczegóły', 'UK': 'Подробиці'}, id: 'details', enabled: false },
+                { title: { 'PL': 'Łączność', 'UK': 'Комунікація'}, id: 'communication', enabled: false }
             ],
             activeAnchor: 0,
             dropdownVisible: false
@@ -81,6 +82,11 @@ export default {
                 window.location.hash = 'main';
                 window.location.hash = this.anchors[index].id;
             }
+        },
+
+        donateClick() {
+            window.location.hash = 'main';
+            window.location.hash = 'aid'
         }
 
     }
@@ -169,6 +175,27 @@ export default {
             }
         }
     }
+}
+
+.button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: var(--cl-red);
+    font-family: Gilroy-Bold, sans-serif;
+    border-radius: 10px;
+    cursor: pointer;
+    &:hover {
+        color: #EEEEEE;
+    }
+}
+
+.small {
+    width: 84px;
+    height: 40px;
+    font-size: 16px;
 }
 
 @media (max-width: 1100px) {

@@ -9,7 +9,7 @@
             <span class="subtitle-text">{{ subtitleText2 }}</span>
         </div>
         <p class="content">{{ content }}</p>
-        <div class="button" @click="donateClick">{{ buttonText }}</div>
+        <div class="button big" @click="donateClick">{{ buttonText }}</div>
     </div>
 </template>
 
@@ -90,20 +90,27 @@ export default {
 }
 
 .button {
-    width: 197px;
-    height: 68px;
-    margin-top: 58px;
-    padding: 19px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     color: white;
     background-color: var(--cl-red);
     font-family: Gilroy-Bold, sans-serif;
-    font-size: 30px;
     border-radius: 10px;
     cursor: pointer;
     text-align: center;
     &:hover {
         color: #EEEEEE;
     }
+}
+
+.big {
+    width: 197px;
+    height: 68px;
+    margin-top: 58px;
+    padding: 19px 20px;
+    font-size: 30px;
 }
 
 </style>

@@ -1,14 +1,14 @@
 <template>
     <div class="top-panel" :class="{ pinned: activeAnchor }">
         <div class="logo"></div>
-        <div v-if="activeAnchor" class="button small" @click="donateClick">Donata</div>
+        <div v-if="activeAnchor" class="button small" @click="donateClick">{{ buttonText[lang] }}</div>
         <div class="anchors">
             <div class="anchors-menu">
                 <div class="anchors-menu-item"
                      v-for="(item, index) in anchors"
                      :class="{ active: index === activeAnchor }"
                      @click="anchorClick(index)">
-                    {{ item.title[langs[activeLang]] }}
+                    {{ item.title[lang] }}
                 </div>
             </div>
             <p class="burger-symbol" @click="dropdownVisible = !dropdownVisible">&#9776;</p>
@@ -20,7 +20,7 @@
                              v-for="(item, index) in anchors"
                              :class="{ active: index === activeAnchor }"
                              @click="anchorClick(index)">
-                            {{ item.title[langs[activeLang]] }}
+                            {{ item.title[lang] }}
                         </div>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
         </div>
         <div class="lang-panel">
             <select name="lang" id="lang-select" @change="langChange($event)">
-                <option v-for="lang of langs">{{ lang }}</option>
+                <option v-for="item of langs" :selected="item === lang">{{ item }}</option>
             </select>
         </div>
     </div>
@@ -41,13 +41,16 @@ export default {
 
     name: "TopPanel",
 
+    props: {
+        lang: String
+    },
+
     data() {
         return {
             langs: ['PL', 'EN', 'UK'],
-            activeLang: 0,
             anchors: [
                 { title: { 'PL': '', 'EN': '', 'UK': ''}, id: 'main', enabled: true },
-                { title: { 'PL': 'O nas', 'EN': 'about', 'UK': 'Про нас' }, id: 'about', enabled: true },
+                { title: { 'PL': 'O nas', 'EN': 'About us', 'UK': 'Про нас' }, id: 'about', enabled: true },
                 // { title: { 'PL': 'Projektowanie', 'EN': 'Projects', 'UK': 'Проекти' }, id: 'projecting', enabled: true },
                 // { title: { 'PL': 'Ambasadorzy', 'EN': 'Ambassadors', 'UK': 'Амбасадори' }, id: 'ambassadors', enabled: false },
                 // { title: { 'PL': 'Wzmacniacz', 'EN': 'Amplifier', 'UK': 'Підсилювач' }, id: 'amplifier', enabled: false },
@@ -56,7 +59,12 @@ export default {
                 // { title: { 'PL': 'Łączność', 'EN': 'Communication', 'UK': 'Комунікація'}, id: 'communication', enabled: false }
             ],
             activeAnchor: 0,
-            dropdownVisible: false
+            dropdownVisible: false,
+            buttonText: {
+                'PL': 'Donata',
+                'EN': 'Donate',
+                'UK': 'Допомогти'
+            }
         }
     },
 
@@ -219,7 +227,7 @@ export default {
 }
 
 .small {
-    width: 84px;
+    width: 94px;
     height: 40px;
     font-size: 16px;
 }

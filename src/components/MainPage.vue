@@ -1,15 +1,16 @@
 <template>
     <div class="main-page" id="main">
         <div class="title">
-            <p class="title-text">{{ titleText }}</p>
+            <p class="title-text">{{ titleText[lang] }}</p>
             <div class="red-line"></div>
         </div>
         <div class="subtitles">
-            <span class="subtitle-text">{{ subtitleText1 }}</span>
-            <span class="subtitle-text">{{ subtitleText2 }}</span>
+            <span class="subtitle-text">{{ subtitleText1[lang] }}</span>
+            <span class="subtitle-text">{{ subtitleText2[lang] }}</span>
         </div>
-        <p class="content">{{ content }}</p>
-        <div class="button big" @click="donateClick">{{ buttonText }}</div>
+        <p class="content">{{ content1[lang] }}</p>
+        <p class="content">{{ content2[lang] }}</p>
+        <div class="button big" @click="donateClick">{{ buttonText[lang] }}</div>
     </div>
 </template>
 
@@ -20,14 +21,45 @@ export default {
 
     name: "MainPage",
 
+    props: {
+        lang: String
+    },
+
     data() {
         return {
-            titleText: 'Lorem',
-            subtitleText1: 'ipsum dolor',
-            subtitleText2: 'consectetur adipiscing elit',
-            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. At habitant iaculis sed mauris metus ' +
-                'elit orci. Arcu hendrerit magna duis sed consectetur elementum sit senectus praesent.',
-            buttonText: 'Donata'
+            titleText: {
+                'PL': 'TeofiPolskie Serce',
+                'EN': 'TeofiPolskie Serce',
+                'UK': 'TeofiPolskie Serce'
+            },
+            subtitleText1: {
+                'PL': 'ipsum dolor',
+                'EN': 'Charitable fung created by',
+                'UK': 'Благодійний фонд, створений'
+            },
+            subtitleText2: {
+                'PL': 'consectetur adipiscing elit',
+                'EN': 'Ukrainians for Ukrainians',
+                'UK': 'українцями для українців'
+            },
+            content1: {
+                'PL': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. At habitant iaculis sed mauris metus ' +
+                    'elit orci. Arcu hendrerit magna duis sed consectetur elementum sit senectus praesent.',
+                'EN': 'Comprehensive and heartly support to the citizens of Ukraine and persons of Ukrainian ' +
+                    'origin in their physical, material and emotional needs. We should stand together!',
+                'UK': 'Всебічна й сердечна підтримка громадянам України та особам українського походження у ' +
+                    'їхніх фізичних, матеріальних та емоційних потребах. Ми маємо триматися разом!'
+            },
+            content2: {
+                'PL': '',
+                'EN': 'You can make your contribution to our mutual mission here.',
+                'UK': 'Зробити свій внесок у нашу спільну справу ти можеш тут.'
+            },
+            buttonText: {
+                'PL': 'Donata',
+                'EN': 'Donate',
+                'UK': 'Допомогти'
+            }
         }
     },
 
@@ -111,6 +143,27 @@ export default {
     margin-top: 58px;
     padding: 19px 20px;
     font-size: 30px;
+}
+
+@media (max-width: 700px) {
+    .title-text {
+        font-size: 50px;
+    }
+    .subtitle-text {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 420px) {
+    .title-text {
+        font-size: 30px;
+    }
+    .subtitle-text {
+        font-size: 20px;
+    }
+    .content {
+        font-size: 16px;
+    }
 }
 
 </style>

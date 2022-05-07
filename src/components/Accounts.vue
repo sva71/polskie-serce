@@ -11,18 +11,10 @@
         </div>
         <div class="accounts-right">
             <div class="accounts-right-info">
-                <div class="accounts-right-info-currency">
-                    <p class="accounts-right-info-currency-label">{{ currencyLabels[lang] }}</p>
-                    <div class="account-right-info-currency-combo">
-                        <select name="cur-combo" id="cur-combo" @change="currencyChange($event)">
-                            <option v-for="name of currencyData.map(item => item[lang].currencyName)">{{ name }}</option>
-                        </select>
-                    </div>
-                </div>
                 <div class="accounts-right-info-requisites">
-                    <div class="req" v-for="req of currencyData[activeCurrency][lang].requisites">
+                    <div class="req" v-for="req of accountsData[lang]">
                         <div class="req-title">{{ req.reqTitle }}</div>
-                        <div class="req-value">{{ req.reqValue }}</div>
+                        <div class="req-value" v-for="item of req.reqValue">{{ item }}</div>
                     </div>
                 </div>
             </div>
@@ -57,83 +49,46 @@ export default {
                 'pozostając praktycznie niezmienionym. Spopularyzował się w latach 60. XX w. wraz z ',
             p3: 'Publikacją arkuszy Letrasetu, zawierających fragmenty Lorem Ipsum, a ostatnio z zawierającym ' +
                 'różne wersje Lorem Ipsum oprogramowaniem przeznaczonym do realizacji',
-            currencyLabels: { 'PL': 'Waluta:', 'EN': 'Currency', 'UK': 'Валюта:' },
-            activeCurrency: 0,
-            currencyData: [
-                {
-                    'PL': {
-                        currencyName: 'Polski złoty (PLN)',
-                        requisites: [
-                            { reqTitle: 'Nazwa firmy', reqValue: 'TEOFIPOLSKIE SERCE FUND' },
-                            { reqTitle: 'Kod IBAN', reqValue: 'PL61109010140000071219812874' },
-                            { reqTitle: 'Nazwa banku', reqValue: 'Bank Millenium' },
-                            { reqTitle: 'Kod SWIFT banku', reqValue: 'BNKMLLNNM' },
-                            { reqTitle: 'Adres spółki', reqValue: 'Stawki 2, 00-193 Warszawa, Polska'}
-                        ]
-                    },
-                    'EN': {
-                        currencyName: 'Polish zloty (PLN)',
-                        requisites: [
-                            { reqTitle: 'Company name:', reqValue: 'TEOFIPOLSKIE SERCE FUND' },
-                            { reqTitle: 'IBAN code', reqValue: 'PL61109010140000071219812874' },
-                            { reqTitle: 'Bank name', reqValue: 'Bank Millenium' },
-                            { reqTitle: 'SWIFT code', reqValue: 'BNKMLLNNM' },
-                            { reqTitle: 'Address', reqValue: 'Stawki 2, 00-193 Warsaw, Poland'}
-                        ]
-                    },
-                    'UK': {
-                        currencyName: 'Польський злотий (PLN)',
-                        requisites: [
-                            { reqTitle: 'Назва фірми', reqValue: 'ФУНДАЦІЯ "ЕОФІПОЛЬСЬКЕ СЕРЦЕ"' },
-                            { reqTitle: 'Код IBAN', reqValue: 'PL61109010140000071219812874' },
-                            { reqTitle: 'Назва банку', reqValue: 'Банк Міленіум' },
-                            { reqTitle: 'Код SWIFT банку', reqValue: 'BNKMLLNNM' },
-                            { reqTitle: 'Адреса', reqValue: 'Ставки 2, 00-193 Варшава, Польща'}
-                        ]
-                    }
-                },
-                {
-                    'PL': {
-                        currencyName: 'Hrywna ukraińska (UAH)',
-                        requisites: [
-                            { reqTitle: 'Nazwa firmy', reqValue: 'TEOFIPOLSKIE SERCE FUND' },
-                            { reqTitle: 'Kod IBAN', reqValue: 'UA61109010140000071219812874' },
-                            { reqTitle: 'Nazwa banku', reqValue: 'PRIVATBANK' },
-                            { reqTitle: 'Kod SWIFT banku', reqValue: 'BNKMLLNNM' },
-                            { reqTitle: 'Adres spółki', reqValue: 'Stawki 2, 00-193 Warszawa, Polska'}
-                        ]
-                    },
-                    'EN': {
-                        currencyName: 'Ukrainian hryvna (UAH)',
-                        requisites: [
-                            { reqTitle: 'Company name:', reqValue: 'TEOFIPOLSKIE SERCE FUND' },
-                            { reqTitle: 'IBAN code', reqValue: 'UA61109010140000071219812874' },
-                            { reqTitle: 'Bank name', reqValue: 'Bank Millenium' },
-                            { reqTitle: 'SWIFT code', reqValue: 'BNKMLLNNM' },
-                            { reqTitle: 'Address', reqValue: 'Stawki 2, 00-193 Warsaw, Poland'}
-                        ]
-                    },
-                    'UK': {
-                        currencyName: 'Українська гривня (UAH)',
-                        requisites: [
-                            { reqTitle: 'Назва фірми', reqValue: 'ФУНДАЦІЯ "ЕОФІПОЛЬСЬКЕ СЕРЦЕ"' },
-                            { reqTitle: 'Код IBAN', reqValue: 'UA61109010140000071219812874' },
-                            { reqTitle: 'Назва банку', reqValue: 'КБ ПРИВАТБАНК' },
-                            { reqTitle: 'Код SWIFT банку', reqValue: 'BNKMLLNNM' },
-                            { reqTitle: 'Адреса', reqValue: 'Ставки 2, 00-193 Варшава, Польща'}
-                        ]
-                    }
-                },
-            ]
+            accountsData: {
+                'PL': [
+                    {reqTitle: 'Nazwa firmy', reqValue: ['TEOFIPOLSKIE SERCE FUNDACJA']},
+                    {reqTitle: 'Kod IBAN', reqValue: [
+                            'PLN: PL 65 1090 2851 0000 0001 4998 5967',
+                            'EUR: PL 40 1090 2851 0000 0001 4998 6029',
+                            'USD: PL 11 1090 2851 0000 0001 4998 6551',
+                            'GBP: PL 30 1090 2851 0000 0001 4998 6597'
+                        ]},
+                    {reqTitle: 'Nazwa banku', reqValue: ['Santander Bank Polska']},
+                    {reqTitle: 'Kod SWIFT banku', reqValue: ['WBKPPLPP']},
+                    {reqTitle: 'Adres spółki', reqValue: ['Stawki 2A U1 Str, 00-193 Warszawa, Polska']}
+                ],
+                'EN': [
+                    {reqTitle: 'Company name:', reqValue: ['TEOFIPOLSKIE SERCE FOUNDATION']},
+                    {reqTitle: 'Kod IBAN', reqValue: [
+                            'PLN: PL 65 1090 2851 0000 0001 4998 5967',
+                            'EUR: PL 40 1090 2851 0000 0001 4998 6029',
+                            'USD: PL 11 1090 2851 0000 0001 4998 6551',
+                            'GBP: PL 30 1090 2851 0000 0001 4998 6597'
+                        ]},
+                    {reqTitle: 'Bank name', reqValue: ['Santander Bank Polska']},
+                    {reqTitle: 'SWIFT code', reqValue: ['WBKPPLPP']},
+                    {reqTitle: 'Address', reqValue: ['Stawki 2 U1, 00-193 Warsaw, Poland']}
+                ],
+                'UK': [
+                    {reqTitle: 'Назва фірми', reqValue: ['ФУНДАЦІЯ "ТЕОФІПОЛЬСЬКЕ СЕРЦЕ"']},
+                    {reqTitle: 'Kod IBAN', reqValue: [
+                            'PLN: PL 65 1090 2851 0000 0001 4998 5967',
+                            'EUR: PL 40 1090 2851 0000 0001 4998 6029',
+                            'USD: PL 11 1090 2851 0000 0001 4998 6551',
+                            'GBP: PL 30 1090 2851 0000 0001 4998 6597'
+                        ]},
+                    {reqTitle: 'Назва банку', reqValue: ['Santander Bank Polska']},
+                    {reqTitle: 'Код SWIFT банку', reqValue: ['WBKPPLPP']},
+                    {reqTitle: 'Адреса', reqValue: ['Ставки 2A U1, 00-193 Варшава, Польща']}
+                ]
+            }
         }
     },
-
-    methods: {
-
-        currencyChange($event) {
-            this.activeCurrency = $event.target.selectedIndex;
-        }
-    }
 
 }
 
@@ -243,7 +198,7 @@ export default {
                         color: var(--cl-red);
                         font-family: Gilroy-Regular, sans-serif;
                         font-weight: 400;
-                        font-size: 20px;
+                        font-size: 19px;
                         line-height: 26px;
                     }
                 }
@@ -303,6 +258,14 @@ export default {
     .accounts-left, .accounts-right {
         width: 90%;
         margin: auto;
+    }
+}
+
+@media (max-width: 560px) {
+    .accounts-right, .accounts-right-info {
+        width: auto;
+        height: auto;
+        padding: 10px;
     }
 }
 

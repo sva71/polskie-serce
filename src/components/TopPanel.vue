@@ -1,13 +1,14 @@
 <template>
-    <div class="top-panel">
-        <img src="../assets/img/logo.png" alt="">
+    <div class="top-panel" :class="{ pinned: activeAnchor }">
+        <div class="logo"></div>
+        <div v-if="activeAnchor" class="button small" @click="donateClick">Donata</div>
         <div class="anchors">
             <div class="anchors-menu">
                 <div class="anchors-menu-item"
                      v-for="(item, index) in anchors"
                      :class="{ active: index === activeAnchor }"
                      @click="anchorClick(index)">
-                    {{ item.title[lang] }}
+                    {{ item.title[langs[activeLang]] }}
                 </div>
             </div>
             <p class="burger-symbol" @click="dropdownVisible = !dropdownVisible">&#9776;</p>
@@ -19,13 +20,17 @@
                              v-for="(item, index) in anchors"
                              :class="{ active: index === activeAnchor }"
                              @click="anchorClick(index)">
-                            {{ item.title[lang] }}
+                            {{ item.title[langs[activeLang]] }}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div v-if="activeAnchor > 0" class="button small" @click="donateClick">Donata</div>
+        <div class="lang-panel">
+            <select name="lang" id="lang-select" @change="langChange($event)">
+                <option v-for="lang of langs">{{ lang }}</option>
+            </select>
+        </div>
     </div>
 </template>
 
@@ -38,16 +43,17 @@ export default {
 
     data() {
         return {
-            lang: 'PL',
+            langs: ['PL', 'EN', 'UK'],
+            activeLang: 0,
             anchors: [
-                { title: { 'PL': 'Główny', 'UK': 'Головна'}, id: 'main', enabled: true },
-                { title: { 'PL': 'O nas', 'UK': 'Про нас' }, id: 'about', enabled: true },
-                { title: { 'PL': 'Projektowanie', 'UK': 'Проекти' }, id: 'projecting', enabled: true },
-                { title: { 'PL': 'Ambasadorzy', 'UK': 'Амбасадори' }, id: 'ambassadors', enabled: false },
-                { title: { 'PL': 'Wzmacniacz', 'UK': 'Підсилювач' }, id: 'amplifier', enabled: false },
-                { title: { 'PL': 'Pomoc', 'UK': 'Допомога' }, id: 'aid', enabled: true },
-                { title: { 'PL': 'Szczegóły', 'UK': 'Подробиці'}, id: 'details', enabled: false },
-                { title: { 'PL': 'Łączność', 'UK': 'Комунікація'}, id: 'communication', enabled: false }
+                { title: { 'PL': '', 'EN': '', 'UK': ''}, id: 'main', enabled: true },
+                { title: { 'PL': 'O nas', 'EN': 'about', 'UK': 'Про нас' }, id: 'about', enabled: true },
+                // { title: { 'PL': 'Projektowanie', 'EN': 'Projects', 'UK': 'Проекти' }, id: 'projecting', enabled: true },
+                // { title: { 'PL': 'Ambasadorzy', 'EN': 'Ambassadors', 'UK': 'Амбасадори' }, id: 'ambassadors', enabled: false },
+                // { title: { 'PL': 'Wzmacniacz', 'EN': 'Amplifier', 'UK': 'Підсилювач' }, id: 'amplifier', enabled: false },
+                { title: { 'PL': 'Pomoc', 'EN': 'Aid', 'UK': 'Допомога' }, id: 'aid', enabled: true },
+                // { title: { 'PL': 'Szczegóły', 'EN': 'Details', 'UK': 'Подробиці'}, id: 'details', enabled: false },
+                // { title: { 'PL': 'Łączność', 'EN': 'Communication', 'UK': 'Комунікація'}, id: 'communication', enabled: false }
             ],
             activeAnchor: 0,
             dropdownVisible: false
@@ -79,14 +85,22 @@ export default {
         anchorClick(index) {
             if (this.anchors[index].enabled) {
                 this.activeAnchor = index;
-                window.location.hash = 'main';
+                window.location.hash = this.anchors[0].id;
                 window.location.hash = this.anchors[index].id;
             }
         },
 
+        home() {
+            window.location.hash = this.anchors[0].id;
+        },
+
         donateClick() {
-            window.location.hash = 'main';
-            window.location.hash = 'aid'
+            this.anchorClick(2);
+        },
+
+        langChange($event) {
+            this.activeLang = $event.target.selectedIndex;
+            this.$emit('lang-change', this.langs[$event.target.selectedIndex]);
         }
 
     }
@@ -99,19 +113,31 @@ export default {
 <style scoped lang="scss">
 
 .top-panel {
-    width: 100%;
+    width: calc(100% - 170px);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    z-index: 10;
+}
+
+.pinned {
     position: fixed;
+    background-color: white;
+}
+
+.logo {
+    width: 146px;
+    height: 30px;
+    background: url("../assets/img/logo.png") no-repeat;
+}
+
+.anchors {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    padding-top: 10px;
-    z-index: 10;
-    background-color: white;
-}
-
-.anchors {
-    margin-left: 76px;
     &-menu {
         display: flex;
         flex-direction: row;
@@ -139,7 +165,7 @@ export default {
     }
     .burger-menu {
         width: 100%;
-        height: 100%;
+        height: 100vh;
         top: 0;
         left: 0;
         position: absolute;
@@ -198,16 +224,24 @@ export default {
     font-size: 16px;
 }
 
-@media (max-width: 1100px) {
-    .top-panel {
-        justify-content: space-between;
-    }
-    .anchors {
-        width: 50%;
+.lang-panel {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-right: 10px;
+    #lang-select {
+        height: 30px;
+        font-size: 16px;
+        border: 1px solid var(--cl-light);
+        border-radius: 4px;
     }
 }
 
-@media (max-width: 970px) {
+@media (max-width: 700px) {
+    .top-panel {
+        width: 100%;
+    }
     .anchors {
         width: 10%;
         .anchors-menu {

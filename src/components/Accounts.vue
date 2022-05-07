@@ -27,10 +27,11 @@
                 </div>
             </div>
             <div class="circles">
-                <div class="circle-rosest" @click="ballClick()"></div>
-                <div class="circle-rose"></div>
-                <div class="circle-red"></div>
+                <div class="circle-left"></div>
+                <div class="circle-mid"></div>
+                <div class="circle-right"></div>
             </div>
+            <div class="circle7"></div>
         </div>
     </div>
 
@@ -56,7 +57,7 @@ export default {
                 'pozostając praktycznie niezmienionym. Spopularyzował się w latach 60. XX w. wraz z ',
             p3: 'Publikacją arkuszy Letrasetu, zawierających fragmenty Lorem Ipsum, a ostatnio z zawierającym ' +
                 'różne wersje Lorem Ipsum oprogramowaniem przeznaczonym do realizacji',
-            currencyLabels: { 'PL': 'Waluta:', 'UK': 'Валюта:' },
+            currencyLabels: { 'PL': 'Waluta:', 'EN': 'Currency', 'UK': 'Валюта:' },
             activeCurrency: 0,
             currencyData: [
                 {
@@ -68,6 +69,16 @@ export default {
                             { reqTitle: 'Nazwa banku', reqValue: 'Bank Millenium' },
                             { reqTitle: 'Kod SWIFT banku', reqValue: 'BNKMLLNNM' },
                             { reqTitle: 'Adres spółki', reqValue: 'Stawki 2, 00-193 Warszawa, Polska'}
+                        ]
+                    },
+                    'EN': {
+                        currencyName: 'Polish zloty (PLN)',
+                        requisites: [
+                            { reqTitle: 'Company name:', reqValue: 'TEOFIPOLSKIE SERCE FUND' },
+                            { reqTitle: 'IBAN code', reqValue: 'PL61109010140000071219812874' },
+                            { reqTitle: 'Bank name', reqValue: 'Bank Millenium' },
+                            { reqTitle: 'SWIFT code', reqValue: 'BNKMLLNNM' },
+                            { reqTitle: 'Address', reqValue: 'Stawki 2, 00-193 Warsaw, Poland'}
                         ]
                     },
                     'UK': {
@@ -92,6 +103,16 @@ export default {
                             { reqTitle: 'Adres spółki', reqValue: 'Stawki 2, 00-193 Warszawa, Polska'}
                         ]
                     },
+                    'EN': {
+                        currencyName: 'Ukrainian hryvna (UAH)',
+                        requisites: [
+                            { reqTitle: 'Company name:', reqValue: 'TEOFIPOLSKIE SERCE FUND' },
+                            { reqTitle: 'IBAN code', reqValue: 'UA61109010140000071219812874' },
+                            { reqTitle: 'Bank name', reqValue: 'Bank Millenium' },
+                            { reqTitle: 'SWIFT code', reqValue: 'BNKMLLNNM' },
+                            { reqTitle: 'Address', reqValue: 'Stawki 2, 00-193 Warsaw, Poland'}
+                        ]
+                    },
                     'UK': {
                         currencyName: 'Українська гривня (UAH)',
                         requisites: [
@@ -111,12 +132,7 @@ export default {
 
         currencyChange($event) {
             this.activeCurrency = $event.target.selectedIndex;
-        },
-
-        ballClick() {
-            console.log(window)
         }
-
     }
 
 }
@@ -132,7 +148,7 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-top: 128px;
+    padding-top: 128px;
     &-left {
         width: 30%;
         display: flex;
@@ -239,18 +255,18 @@ export default {
             right: 0;
             display: flex;
             flex-direction: row;
-            .circle-red, .circle-rose, .circle-rosest {
+            .circle-left, .circle-mid, .circle-right {
                 width: 30px;
                 height: 30px;
                 margin-left: 30px;
-                background-color: var(--cl-red);
+                background-color: var(--cl-light);
                 border-radius: 50%;
             }
-            .circle-rosest {
-                opacity: 0.2;
+            .circle-left {
+                opacity: 0.4;
             }
-            .circle-rose {
-                opacity: 0.5;
+            .circle-mid {
+                opacity: 0.7;
             }
         }
     }
@@ -268,4 +284,27 @@ export default {
     }
 }
 
+.circle7 {
+    width: 1188px;
+    height: 1188px;
+    position: absolute;
+    bottom: 20%;
+    left: 20%;
+    border-radius: 50%;
+    background: linear-gradient(180deg, #0057B7 0%, #EAEDFF 43.02%);
+    opacity: 0.1;
+    z-index: -1;
+}
+
+@media (max-width: 1200px) {
+    .accounts {
+        flex-direction: column;
+    }
+    .accounts-left, .accounts-right {
+        width: 90%;
+        margin: auto;
+    }
+}
+
 </style>
+

@@ -1,5 +1,5 @@
 <template>
-    <div style="overflow-x: hidden; position: relative;" id="#landing">
+    <div style="overflow-x: hidden; position: relative;" id="landing">
         <div class="circle1"></div>
         <div class="circle2">
             <div class="circle3"></div>
@@ -8,18 +8,12 @@
         </div>
         <div class="circle6"></div>
         <div class="wrapper">
-            <div class="lang-panel">
-                <select name="lang" id="lang-select" @change="langChange($event)">
-                    <option v-for="lang of langs">{{ lang }}</option>
-                </select>
-            </div>
-            <TopPanel :lang="langs[activeLang]" />
-            <MainPage :lang="langs[activeLang]" />
+            <TopPanel v-on:lang-change="lang = $event" />
+            <MainPage />
         </div>
         <PolishHeart />
 <!--        <Projecting />-->
-        <Accounts :lang="langs[activeLang]" />
-
+        <Accounts :lang="lang" />
     </div>
 </template>
 
@@ -43,18 +37,8 @@ export default {
 
     data() {
         return {
-            langs: ['PL', 'UK'],
-            activeLang: 0
+            lang: 'PL'
         }
-    },
-
-    methods: {
-
-        langChange($event) {
-            this.activeLang = $event.target.selectedIndex;
-            console.log(this.activeLang);
-        }
-
     }
 
 }
@@ -70,9 +54,6 @@ export default {
     min-height: 100vh;
     margin: 0 170px;
     overflow-y: scroll;
-    @media (max-width: 800px) {
-        margin: 50px 20px;
-    }
 }
 
 .circle1 {
@@ -138,21 +119,10 @@ export default {
     opacity: 0.3;
 }
 
-.lang-panel {
-    position: fixed;
-    top: 15px;
-    right: 5%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    z-index: 11;
-    #lang-select {
-        height: 30px;
-        font-size: 16px;
-        border: 1px solid var(--cl-light);
-        border-radius: 4px;
-        margin-left: 20px;
+@media (max-width: 800px) {
+    .wrapper {
+        margin: 0;
+        padding-left: 10px;
     }
 }
 

@@ -53,8 +53,9 @@ export default {
             },
             topBlock: {
                 p1: {
-                    'PL': 'Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficznym. ' +
-                        'Został po raz pierwszy użyty w XV w. przez nieznanego drukarza do wypełnienia',
+                    'PL': 'Wojna nie ominęła żadnej ukraińskiej rodziny, przynosząc wiele cierpień, zniszczeń, ' +
+                        'strat. Ale pomagając sobie nawzajem, tworzymy nieodpartą siłę, która z pewnością przybliża ' +
+                        'nasze Zwycięstwo.',
                     'EN': 'The war did not bypass any Ukrainian family, bringing a lot of suffering, ' +
                         'destruction, and loss. However, tragic events have also become a marker of humanity, ' +
                         'and by helping each other we create an irresistible force that not only helps to survive ' +
@@ -65,8 +66,9 @@ export default {
                         'аближає до Перемоги.'
                 },
                 p2: {
-                    'PL': 'Tekstem próbnej książki. Pięć wieków później zaczął być używany przemyśle elektronicznym, ' +
-                        'pozostając praktycznie niezmienionym. Spopularyzował się w latach 60. XX w. wraz z ',
+                    'PL': 'Celem naszej fundacji jest niesienie pomocy humanitarnej, ekonomicznej, ' +
+                        'psychologicznej, prawnej i edukacyjnej. Badamy i zbieramy informacje o potrzebach ' +
+                        'Ukraińców, pomocy logistycznej i bieżących potrzebach.',
                     'EN': 'The purpose of our fund is to provide humanitarian, economic, psychological, legal, ' +
                         'counseling and educational assistance. We research and collect information about the needs ' +
                         'of Ukrainians, transport aids (essentials, food, medicine).',
@@ -75,8 +77,9 @@ export default {
                         'українців, транспортуємо засоби допомоги (речі першої необхідності, продукти, медикаменти).'
                 },
                 p3: {
-                    'PL': 'Publikacją arkuszy Letrasetu, zawierających fragmenty Lorem Ipsum, a ostatnio z zawierającym ' +
-                        'różne wersje Lorem Ipsum oprogramowaniem przeznaczonym do realizacji',
+                    'PL': 'Edukujemy Ukraińców w tych trudnych czasach – prowadzimy działalność wydawniczą i ' +
+                        'edukacyjną, organizujemy wydarzenia kulturalne i akcje informacyjne, konferencje i ' +
+                        'seminaria, w których udział może wziąć każdy.',
                     'EN': 'Also, we do everything for the education of Ukrainians despite the difficult times - we ' +
                         'conduct publishing and educational activities, hold cultural events and information ' +
                         'campaigns, conferences and seminars, which everyone has the opportunity to join.',
@@ -98,10 +101,9 @@ export default {
                         'підтримка українців! Приймаємо фінансові та речові пожертви і передаємо тим, хто потребує.'
                 },
                 p2: {
-                    'PL': 'Wielu webmasterów i designerów używa Lorem Ipsum jako domyślnego modelu tekstu i wpisanie w ' +
-                            'internetowej wyszukiwarce ‘lorem ipsum’ spowoduje znalezienie bardzo wielu stron, które wciąż ' +
-                        'są w budowie. Wiele wersji tekstu ewoluowało i zmieniało się przez lata, czasem przez przypadek, ' +
-                        'czasem specjalnie (humorystyczne wstawki itd).',
+                    'PL': 'Organizujemy stałe i tymczasowe misje i ośrodki pomocy, które łączy wspólny cel – ' +
+                        'wspierać Ukraińców! Przyjmujemy darowizny finansowe i rzeczowe i przekazujemy je ' +
+                        'potrzebującym.',
                     'EN': 'The TeofiPolskie Serce Foundation is based in Warsaw, but its activities are spread ' +
                         'throughout Poland and Ukraine. The Fund is supervised by the Minister of Health.',
                     'UK': 'Фонд TeofiPolskie Serce базується у Варшаві, але його діяльність розповсюджується на ' +
@@ -109,7 +111,9 @@ export default {
                         'Здоровʼя.'
                 },
                 p3: {
-                    'PL': '', 'EN': '', 'UK': ''
+                    'PL': 'Fundacja TeofiPolskie Serce ma siedzibę w Warszawie, ale jej działalność obejmuje ' +
+                        'całą Polskę i Ukrainę.',
+                    'EN': '', 'UK': ''
                 }
             }
         }

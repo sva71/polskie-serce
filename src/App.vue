@@ -1,4 +1,5 @@
 <template>
+    <div id="main"></div>
     <div v-if="lang === 'RU'">
         <div class="red-wrapper">
             <div class="russian-ship">
@@ -47,14 +48,19 @@ export default {
     },
 
     data() {
-        switch (window.navigator.language) {
-            case 'pl-PL':
-                return { lang: 'PL' }
-            case 'uk-UA':
-                return { lang: 'UK' }
-            case 'ru-RU':
-                return { lang: 'RU' }
-            default: return { lang: 'EN' }
+        if (localStorage.getItem('polskie-serce-lang')) {
+            return { lang: localStorage.getItem('polskie-serce-lang') };
+        } else {
+            switch (window.navigator.language) {
+                case 'pl-PL':
+                    return {lang: 'PL'}
+                case 'uk-UA':
+                    return {lang: 'UK'}
+                case 'ru-RU':
+                    return {lang: 'RU'}
+                default:
+                    return {lang: 'EN'}
+            }
         }
     }
 

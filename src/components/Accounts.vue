@@ -2,11 +2,11 @@
 
     <div class="accounts" id="aid">
         <div class="accounts-left">
-            <div class="accounts-left-title">{{ leftTitle }}</div>
+            <div class="accounts-left-title">{{ leftTitle[lang] }}</div>
             <div class="accounts-left-text">
-                <p>{{ p1 }}</p>
-                <p>{{ p2 }}</p>
-                <p>{{ p3 }}</p>
+                <p>{{ p1[lang] }}</p>
+                <p>{{ p2[lang] }}</p>
+                <p>{{ p3[lang] }}</p>
             </div>
         </div>
         <div class="accounts-right">
@@ -42,13 +42,35 @@ export default {
 
     data() {
         return {
-            leftTitle: 'Szczegóły funduszu TeofiPolskie Serce',
-            p1: 'Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficznym. ' +
-                'Został po raz pierwszy użyty w XV w. przez nieznanego drukarza do wypełnienia ',
-            p2: 'Tekstem próbnej książki. Pięć wieków później zaczął być używany przemyśle elektronicznym, ' +
-                'pozostając praktycznie niezmienionym. Spopularyzował się w latach 60. XX w. wraz z ',
-            p3: 'Publikacją arkuszy Letrasetu, zawierających fragmenty Lorem Ipsum, a ostatnio z zawierającym ' +
-                'różne wersje Lorem Ipsum oprogramowaniem przeznaczonym do realizacji',
+            leftTitle: {
+                'PL': 'Wesprzyj potrzebujących i przybliż zwycięstwo',
+                'EN': 'Each of your contributions supports those in need and brings victory closer',
+                'UK': 'Кожен ваш внесок підтримує тих, хто потребує, та наближає перемогу'
+            },
+            p1: {
+                'PL': 'Nie ma „zbyt małych” kwot ani „niepotrzebnych” darowizn. Poświęcając się fundacji, ' +
+                    'dzielisz się nie tylko rzeczami, ale także odrobiną światła w swoim sercu.',
+                'EN': 'There are no "too small" amounts or "unnecessary" contributions. By donating to the ' +
+                    'foundation, you share not only material things, but also a piece of light inside your heart.',
+                'UK': 'Не буває “Занадто маленьких” сум або “непотрібних” речових внесків. Жертвуючи у фонд, ' +
+                    'ви ділитися не лише речами, але й частинкою світла всередині вашого серця.'
+            },
+            p2: {
+                'PL': 'Jeśli chcesz zostać pracownikiem Fundacji lub brać udział w którejkolwiek z jej projektów, ' +
+                    'skontaktuj się z nami.',
+                'EN': 'If you want to become an employee of the fund or take part in any of its activities, ' +
+                    'contact the following contacts.',
+                'UK': 'Якщо ви хочете стати співробітником фонду чи взяти участь у будь-яких напрямах його ' +
+                    'діяльності, звертайтеся за вказаними контактами.'
+            },
+            p3: {
+                'PL': 'Możesz wnieść swój wkład w działalność fundacji i wesprzeć Ukraińców. Poniżej znajdziesz ' +
+                    'dane do przelewu:',
+                'EN': 'You can make your charitable contribution to the activities of the foundation and support ' +
+                    'Ukrainians according to the following detail',
+                'UK': 'Зробити свій благодійний внесок у діяльність фонду та підтримку українців ви можете за ' +
+                    'наступними реквізитами:'
+            },
             accountsData: {
                 'PL': [
                     {reqTitle: 'Nazwa firmy', reqValue: ['TEOFIPOLSKIE SERCE FUNDACJA']},

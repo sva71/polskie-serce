@@ -1,5 +1,5 @@
 <template>
-    <div class="main-page" id="main">
+    <div class="main-page">
         <div class="title">
             <p class="title-text">{{ titleText[lang] }}</p>
             <div class="red-line"></div>
@@ -33,18 +33,18 @@ export default {
                 'UK': 'TeofiPolskie Serce'
             },
             subtitleText1: {
-                'PL': 'ipsum dolor',
+                'PL': 'Fundacja charytatywna',
                 'EN': 'Charitable fung created by',
                 'UK': 'Благодійний фонд, створений'
             },
             subtitleText2: {
-                'PL': 'consectetur adipiscing elit',
+                'PL': 'Stworzony przez Ukraińców dla Ukraińców',
                 'EN': 'Ukrainians for Ukrainians',
                 'UK': 'українцями для українців'
             },
             content1: {
-                'PL': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. At habitant iaculis sed mauris metus ' +
-                    'elit orci. Arcu hendrerit magna duis sed consectetur elementum sit senectus praesent.',
+                'PL': 'Wszechstronne i serdeczne wsparcie dla obywateli Ukrainy i osób pochodzenia ukraińskiego ' +
+                    'w ich potrzebach fizycznych, materialnych i emocjonalnych. Musimy trzymać się razem!',
                 'EN': 'Comprehensive and heartly support to the citizens of Ukraine and persons of Ukrainian ' +
                     'origin in their physical, material and emotional needs. We should stand together!',
                 'UK': 'Всебічна й сердечна підтримка громадянам України та особам українського походження у ' +

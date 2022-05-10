@@ -1,6 +1,6 @@
 <template>
     <div class="top-panel" :class="{ pinned: activeAnchor }">
-        <div class="logo"></div>
+        <div class="logo" @click="home"></div>
         <div v-if="activeAnchor" class="button small" @click="donateClick">{{ buttonText[lang] }}</div>
         <div class="anchors">
             <div class="anchors-menu">
@@ -49,7 +49,7 @@ export default {
         return {
             langs: ['PL', 'EN', 'UK'],
             anchors: [
-                { title: { 'PL': '', 'EN': '', 'UK': ''}, id: 'main', enabled: true },
+                { title: { 'PL': 'Główna', 'EN': 'Home', 'UK': 'Головна'}, id: 'main', enabled: true },
                 { title: { 'PL': 'O nas', 'EN': 'About us', 'UK': 'Про нас' }, id: 'about', enabled: true },
                 // { title: { 'PL': 'Projektowanie', 'EN': 'Projects', 'UK': 'Проекти' }, id: 'projecting', enabled: true },
                 // { title: { 'PL': 'Ambasadorzy', 'EN': 'Ambassadors', 'UK': 'Амбасадори' }, id: 'ambassadors', enabled: false },
@@ -69,37 +69,48 @@ export default {
     },
 
     mounted() {
-        this.anchors.forEach(item =>
-            item['offset'] = document.getElementById(item.id).offsetTop - document.getElementById(item.id).offsetHeight);
-        window.addEventListener('scroll', () => {
-            if (this.activeAnchor + 1 < this.anchors.length) {
-                if (window.scrollY >= this.anchors[this.activeAnchor + 1].offset) {
-                    this.activeAnchor++
-                }
-            }
-            if (this.activeAnchor - 1 >= 0) {
-                if (window.scrollY <= this.anchors[this.activeAnchor].offset) {
-                    this.activeAnchor--;
-                }
-            }
-            if (window.scrollY === 0) {
-                this.activeAnchor = 0;
-            }
-        })
+        this.calcAnchors();
     },
 
     methods: {
 
+        calcAnchors() {
+            this.anchors.forEach(item =>
+                item['offset'] = document.getElementById(item.id).offsetTop - document.getElementById(item.id).offsetHeight);
+            console.log(this.anchors);
+            window.addEventListener('scroll', () => {
+                if (this.activeAnchor + 1 < this.anchors.length) {
+                    if (window.scrollY >= this.anchors[this.activeAnchor + 1].offset) {
+                        this.activeAnchor++
+                    }
+                }
+                if (this.activeAnchor - 1 >= 0) {
+                    if (window.scrollY <= this.anchors[this.activeAnchor].offset) {
+                        this.activeAnchor--;
+                    }
+                }
+                if (window.scrollY === 0) {
+                    this.activeAnchor = 0;
+                }
+            })
+        },
+
         anchorClick(index) {
-            if (this.anchors[index].enabled) {
-                this.activeAnchor = index;
-                window.location.hash = this.anchors[0].id;
-                window.location.hash = this.anchors[index].id;
+            this.dropdownVisible = false;
+            if (!index) {
+                this.home();
+            } else {
+                if (this.anchors[index].enabled) {
+                    window.location.hash = this.anchors[0].id;
+                    window.location.hash = this.anchors[index].id;
+                    this.activeAnchor = index;
+                }
             }
         },
 
         home() {
-            window.location.hash = this.anchors[0].id;
+            window.scroll(0,0);
+            this.activeAnchor = 0;
         },
 
         donateClick() {
@@ -107,7 +118,7 @@ export default {
         },
 
         langChange($event) {
-            this.activeLang = $event.target.selectedIndex;
+            localStorage.setItem('polskie-serce-lang', this.langs[$event.target.selectedIndex]);
             this.$emit('lang-change', this.langs[$event.target.selectedIndex]);
         }
 
@@ -138,6 +149,7 @@ export default {
 .logo {
     width: 146px;
     height: 30px;
+    cursor: pointer;
     background: url("../assets/img/logo.png") no-repeat;
 }
 
